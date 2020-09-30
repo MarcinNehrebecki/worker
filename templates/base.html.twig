@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link href="basend/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+        {% include 'Main/patrial/css.html.twig' %}
+    </head>
+    <body>
+        {% include 'Main/patrial/head.html.twig' %}
+        {% include 'Main/patrial/head_link.html.twig' %}
+        {% block body %}
+            {% block content %}
+            {% endblock %}
+        {% endblock %}
+
+        {% include 'footer.html.twig' %}
+        {% include 'Main/patrial/js.html.twig' %}
+        {% block javascripts %}{% endblock %}
+        <script>
+            $(document).ready(function() {
+                // you may need to change this code if you are not using Bootstrap Datepicker
+                $('.js-datepicker').datepicker({
+                    format: 'yyyy-mm-dd'
+                });
+            });
+        </script>
+        <script src="basend/layout/scripts/jquery.min.js"></script>
+        <script src="basend/layout/scripts/jquery.backtotop.js"></script>
+        <script src="basend/layout/scripts/jquery.mobilemenu.js"></script>
+    </body>
+</html>

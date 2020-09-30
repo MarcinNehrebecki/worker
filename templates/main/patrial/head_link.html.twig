@@ -1,0 +1,28 @@
+<div class="bgded overlay background">
+    <div class="wrapper row1">
+        <header id="header" class="hoc clear">
+            <div id="logo" class="fl_left">
+                <h1><a href="#">Basend</a></h1>
+            </div>
+            <nav id="mainav" class="fl_right">
+                <ul class="clear">
+                    <li class="active"><a href="{{ path('main') }}">Home</a></li>
+                    <li><a class="drop" href="#">Dział</a>
+                        <ul>
+                            <li><a href="{{ path('departmentNew') }}">Nowy</a></li>
+                            <li><a href="{{ path('departments') }}">Lista</a></li>
+
+                        </ul>
+                    </li>
+                    <li><a class="drop" href="#">Pracownicy</a>
+                        <ul>
+                            <li><a href="{{ path('workerNew') }}">Nowy</a></li>
+                            <li><a href="{{ path('workers') }}">Lista</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ path('report') }}">Raport Miesięczny</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+</div>

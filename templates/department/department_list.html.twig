@@ -1,0 +1,103 @@
+{% extends "base.html.twig" %}
+
+{% block javascripts %}
+    <script>
+
+        function filter()
+        {
+            $('#table').bootstrapTable('refresh');
+
+            return false;
+        }
+
+        function params(params)
+        {
+            $('#filter_form').find('input, select').each(function () {
+                params[$(this).attr('name')] = $(this).val();
+            });
+
+            return params;
+        }
+
+        function rowStyle(row) {
+            return {classes: row.class};
+
+        }
+    </script>
+{% endblock %}
+{% block body %}
+    <section class="content-header">
+        <h1>
+        </h1>
+        <ol class="breadcrumb">
+
+            <li class="active">{{ title }}</li>
+        </ol>
+    </section>
+
+    <div class="box">
+        <div class="box-header with-border">
+            {{ title }}
+        </div>
+        <div class="box-body">
+            <form id="filter_form" onsubmit="return filter()">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-search"></i>
+                        Szukaj
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input type="text" name='query' value=''>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 text-right">
+                                <button type="submit" class="btn btn-labeled btn-primary"><span class="btn-label"><i class="fa fa-search"></i></span> Szukaj</button>
+                                <a href="{{ path('departmentNew') }}" class="btn btn-primary pull-right">Dodaj</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <table  id="table" class="table-striped"
+                    data-toggle="table"
+                    data-locale="pl-PL"
+                    data-url="{{ path('departmentList') }}"
+                    data-side-pagination="server"
+                    data-pagination="true"
+
+                    data-sort-name="name"
+                    data-row-style="rowStyle"
+                    data-query-params="params"
+                    data-toolbar="#toolbar"
+                    data-page-size="25"
+            >
+                <thead>
+                <tr>
+                    <th data-field="i" data-width="50">LP</th>
+                    <th data-field="name" data-sortable="true">Nazwa</th>
+                    <th data-field="bonusPrice" data-sortable="true">Kwora/procent Bonusu</th>
+                    <th data-field="type" data-sortable="true">Typ bonusu</th>
+                    <th data-field="workers" data-sortable="false">Ilość pracowników</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+{% endblock %}
