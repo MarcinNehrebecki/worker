@@ -26,7 +26,6 @@ class WorkerService extends ListService
 
     public function __construct(Request $request)
     {
-        dump($request->get('c.firstName'));
         $this->offset = $request->get('offset') ?? 0;
         $this->limit = $request->get('limit') ?? 0;
         $this->order = $request->get('order') ?? 'asc';
