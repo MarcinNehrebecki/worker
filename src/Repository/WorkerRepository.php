@@ -54,6 +54,27 @@ class WorkerRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    /**
+     * @param WorkerService $service
+     * @return array
+     */
+    public function findListOnWorkerReport(WorkerService $service): array
+    {
+        $query = $this->createQueryBuilder('c')
+            ->andWhere('c.lastName LIKE :lastName')
+            ->andWhere('c.firstName LIKE :firstName')
+            ->andWhere('d.name LIKE :name')
+            ->setParameter('lastName', '%'.$service->getLastName().'%')
+            ->setParameter('firstName', '%'.$service->getFirstName().'%')
+            ->setParameter('name', '%'.$service->getName().'%')
+            ->orderBy($service->getSort(), $service->getOrder())
+            ->setMaxResults($service->getLimit())
+            ->setFirstResult($service->getOffset())
+            ->leftJoin('c.department', 'd')
+            ->getQuery();
+        return $query->getResult() ?? [];
+    }
+
     // /**
     //  * @return WorkerEntity[] Returns an array of WorkerEntity objects
     //  */
